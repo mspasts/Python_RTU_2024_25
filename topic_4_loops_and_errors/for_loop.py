@@ -3,6 +3,7 @@
 # we can even make our own
 
 # basic for loop using range to print some numbers
+# range(5) will give you numbers 0,1,2,3,4 on demand
 for i in range(5): # range is iterable that gives you numbers on demand
     print(f"I am number {i}")
     
@@ -18,5 +19,9 @@ print("outside loop j is", j)
 name = "Valdis"
 for char in name: # could use c, or it, or item, element etc
     print("Current char is", char)
+    
+# let's print numbers 10 until 15
+for n in range(10,16): # so last item is not included
+    print("n:", n)
     
     
