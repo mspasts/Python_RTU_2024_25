@@ -24,4 +24,13 @@ for char in name: # could use c, or it, or item, element etc
 for n in range(10,16): # so last item is not included
     print("n:", n)
     
+# we can get step
+for n in range(100,111,5): # so 3rd parameter is step
+    print("n is", n)
+    
+# we can go down
+for floor in range(9,-2,-4):
+    print("On floor", floor)
+print("Outside on floor", floor)
+    
     
