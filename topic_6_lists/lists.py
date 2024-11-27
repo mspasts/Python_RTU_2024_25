@@ -101,3 +101,24 @@ print("2nd, 3rd and 4th element", numbers[1:4]) # [10, 20, 30]
 # now last 5 elements - let's use negative indexing
 # so we start at index -5 and go to the end as default
 print("Last 5 elements", numbers[-5:]) # [50, 60, 70, 80, 90]
+# again first 3 would be 0, 10, 20 - so we start at 0 and go to index 3
+# we do not need to specify the start index if we start at 0
+print("First 3 elements", numbers[:3]) # [0, 10, 20]
+
+# note slicing creates a new list - it does not modify the original list
+
+# now let's change some element in the list
+# print my shopping list
+print(shopping_list) # ['apple', 'bread', 'kefir', 'butter']
+# let's change bread to cheese
+shopping_list[1] = "cheese" # so I change 2nd element with index 1 to cheese
+# this is not possible with strings - strings are immutable
+print(shopping_list) # ['apple', 'cheese', 'kefir', 'butter']
+# let's change last element to olive oil
+# we could use 3 or -1
+shopping_list[-1] = "olive oil"
+print(shopping_list) # ['apple', 'cheese', 'kefir', 'olive oil']
+
+# so we can mutate lists - change elements
+
+# we can also add elements to the list - dynamic size
