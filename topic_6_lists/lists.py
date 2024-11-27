@@ -122,3 +122,85 @@ print(shopping_list) # ['apple', 'cheese', 'kefir', 'olive oil']
 # so we can mutate lists - change elements
 
 # we can also add elements to the list - dynamic size
+
+# let's add some items to the shopping list
+# we can use append method - this adds element to the end of the list
+# let's add tomatoes
+shopping_list.append("tomatoes") # note we are not saving the result - append MODIFIES the list itself
+# in Computer Science this is called IN PLACE operation - we modify the original object - nothing new is created
+print(shopping_list) # ['apple', 'cheese', 'kefir', 'olive oil', 'tomatoes']
+# what happens if we try to append two things with append
+# let's add ravioli and bread sticks
+shopping_list.append(["ravioli", "bread sticks"]) 
+# we might not get what we wanted
+print(shopping_list) # ['apple', 'cheese', 'kefir', 'olive oil', 'tomatoes', ['ravioli', 'bread sticks']]
+# we've created a nested list a list inside a list
+# most likely we do not want it here
+
+# instead we can use extend method to add multiple elements as separate elements
+# first let's pop the last element out of the list
+last_element = shopping_list.pop() # so pop removes the last element and returns it
+# again pop modifies the list in place
+print(last_element) # ['ravioli', 'bread sticks']
+print(shopping_list) # ['apple', 'cheese', 'kefir', 'olive oil', 'tomatoes']
+
+# so now we can use extend
+shopping_list.extend(["ravioli", "bread sticks", "wine"]) # so we add 3 elements in a flat way
+# again this modifies the list in place
+print(shopping_list) # ['apple', 'cheese', 'kefir', 'olive oil', 'tomatoes', 'ravioli', 'bread sticks', 'wine']
+
+
+# let's find out index of kefir
+# we can use index method
+index_kefir = shopping_list.index("kefir") # this raises an error if element is not found
+print("kefir is at index", index_kefir) # 2
+# there is no find method - index is the method to use for lists
+shopping_list.remove("kefir") # so we remove kefir from the list, raises an error if element is not found
+print(shopping_list) # ['apple', 'cheese', 'olive oil', 'tomatoes', 'ravioli', 'bread sticks', 'wine']
+# let's check if kefir is in the list
+# we can use in operator
+if "kefir" in shopping_list:
+    print("kefir is in the list")
+else:
+    print("kefir is not in the list")
+
+#let's add one more apple to the list but let's insert it at index where kefir was
+shopping_list.insert(index_kefir, "apple") # so we insert apple at index 2
+# rest of values will be shifted to the right
+print(shopping_list) # ['apple', 'cheese', 'apple', 'olive oil', 'tomatoes', 'ravioli', 'bread sticks', 'wine']
+# this insert can be inefficient - if you need to insert at the beginning or end of very large list
+# append is more efficient and faster
+
+# let's count how many apples we have in the list
+print("There are", shopping_list.count("apple"), "apples in the list") # 2
+
+# now let's talk copy and alias
+# if we use assignment operator = we create an alias, a shortcut to the same list but not new list!
+shopping_list_alias = shopping_list # we have two names for the same list
+# if we change one list the other will change as well
+# now let's create a real copy
+shopping_list_copy = shopping_list.copy() # so we create a new list with the same elements
+# let'' print all 3
+print(shopping_list) # ['apple', 'cheese', 'apple', 'olive oil', 'tomatoes', 'ravioli', 'bread sticks', 'wine']
+print(shopping_list_alias) # ['apple', 'cheese', 'apple', 'olive oil', 'tomatoes', 'ravioli', 'bread sticks', 'wine']
+print(shopping_list_copy) # ['apple', 'cheese', 'apple', 'olive oil', 'tomatoes', 'ravioli', 'bread sticks', 'wine']
+
+print("Will sort original list")
+# let's sort the original list - lexigraphical order
+shopping_list.sort() # so we sort the list in place, we modify the original list
+
+# let's print all 3
+print("shopping_list", shopping_list) # ['apple', 'apple', 'bread sticks', 'cheese', 'olive oil', 'ravioli', 'tomatoes', 'wine']
+print("shopping_list_alias", shopping_list_alias) # ['apple', 'apple', 'bread sticks', 'cheese', 'olive oil', 'ravioli', 'tomatoes', 'wine']
+print("shopping_list_copy", shopping_list_copy) # ['apple', 'cheese', 'apple', 'olive oil', 'tomatoes', 'ravioli', 'bread sticks', 'wine']
+
+# let's clear alias - careful with clear! it modifies the original list
+shopping_list_alias.clear() # so we clear the list - we modify the original list as well...
+print("shopping_list", shopping_list) # []
+print("shopping_list_alias", shopping_list_alias) # []
+print("shopping_list_copy", shopping_list_copy) # ['apple', 'cheese', 'apple', 'olive oil', 'tomatoes', 'ravioli', 'bread sticks', 'wine']
+
+print("I am hungry, let's go to the store")
+# let'' iterate over a list
+for item in shopping_list_copy: # item could be element, it, i, x, t, any variable name
+    print("I need to buy", item)
