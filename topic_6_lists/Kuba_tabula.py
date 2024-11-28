@@ -13,7 +13,7 @@ while True:
     
         sakuma_skaitlis = int(sakuma_skaitlis)
         beigu_skaitlis = int(beigu_skaitlis)
-
+        # here we know that we have integers for both sakuma_skaitlis and beigu_skaitlis
         kubi = []
         for i in range(sakuma_skaitlis, beigu_skaitlis + 1):
             kubs = i ** 3
@@ -22,4 +22,4 @@ while True:
 
         print(f"Visi kubi: {kubi}")
     except ValueError:
-        print("Nepareiza ievade")
+        print("Nepareiza ievade lūdzu ievadiet veselu skaitli vai 'q' iziešanai.")
