@@ -102,9 +102,101 @@ def add_and_multiply(a, b, c):
     # we will create a local to the function variable called result
     # this local result is not related to the global result variable outside the function
     result = (a + b) * c # note this result is local to the function
-    print("Result is", result)
+    print("Result is", result) # this is not ideal to always print the result
     return result # here this local result will be returned and the name of the variable doesn't matter anywhere else
 
 # let's test it
 another_result = add_and_multiply(10, 20, 30)
 print("Another result is", another_result)
+
+# let's make a function that takes a list of numbers and returns the average
+# this function actually exists in statistics module but let's make our own
+# let's add verbose parameter to print the total and average
+def avg(numbers, verbose=False): # so verbose is not required it will be False by default
+    # verbose is just a parameter name that is commonly used, could be anything else legal for variable name
+    total = sum(numbers)
+    average = total / len(numbers)
+    # so we have two local variables total and avg
+    if verbose:
+        print("Using verbose mode")
+        print("Total is", total)
+        print("Average is", average)
+    return average
+
+my_numbers = list(range(1, 11)) # so this is a list of numbers from 1 to 10
+# let's test it
+average = avg(my_numbers)
+print("Average is", average)
+
+more_numbers = list(range(1, 101))
+# let's test it with verbose
+average = avg(more_numbers, verbose=True)
+print("Average is", average)
+
+# i call default values "have your cake and eat it too" because you can use the function without specifying the parameter
+
+# so if I know I will be using some common parameters, I can set them as default
+
+# so you could all default values if you want in some function
+# only requirment is that default values follow non-default values
+
+# so what's different between parameters and arguments?
+# in real life we use them interchangeably
+# technically parameters are the names in the function definition
+# arguments are the values we pass to the function
+
+# now how about returning multiple values?
+# we simply use , to separate them - technically we return a tuple - about those later
+
+# let's make a function that returns min and avg and max of a list of numbers
+# also we will use docstring to document the function
+def min_avg_max(numbers):
+    """
+    Returns min, avg and max of a list of numbers
+    Input: numbers - list of numbers
+    Output: tuple of min, avg and max
+    """
+
+    # since we defined our own avg we can use it!
+    return min(numbers), avg(numbers), max(numbers)
+
+# let's test it - note how I can save all three values in one line
+min_val, avg_val, max_val = min_avg_max(more_numbers)
+print("Min is", min_val)
+print("Avg is", avg_val)
+print("Max is", max_val)
+
+# one last thing - our functions in Python are pretty flexible
+# they take pretty much any type of input arguments and return any type of output
+# this can lead to some confusion and bugs
+
+name = "Valdis "
+food = "likes potatoes"
+result = add(name, food) # will this work?
+print("Result is", result) # what will be the result?
+
+# Python has so called type hints that let us specify what type of input and output we expect
+def add_with_type(a: int, b: int) -> int:
+    """
+    Adds two integers and returns the result
+    Input: a - integer
+    Input: b - integer
+    Output: integer
+    """
+    return a + b
+
+# let's test it
+result = add_with_type(10, 20)
+print("Result is", result)
+
+# let's try with strings
+str_result = add_with_type("Valdis", "likes potatoes")
+print("String result is", str_result)
+
+# turns out type hints in Python are like comments - they don't enforce anything
+# so what's the use?
+# they can be used by linters and IDEs to give you warnings and suggestions
+# so you use them to catch bugs early and to document your code
+
+# use type hints if you are writing code for others for sure!
+# for yourself it depends on your style and how much you like to document your code
