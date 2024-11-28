@@ -27,7 +27,7 @@ def order_food(): # note blank parentheses and colon
     walk_to_restaurant()
     print("Order good food")
 
-order_food()
+# order_food()
 
 # now I can call the function
 # order_food() # note the parentheses
@@ -43,4 +43,22 @@ def order_any(food): # so food is a parameter
     walk_to_restaurant()
     print(f"Order {food}")
 
-order_any("pizza")
+# order_any("pizza")
+
+# let's make a function that a list of foods and orders all of them
+def order_all(foods):
+    print(f"Let's order {len(foods)} food items")
+    for food in foods:
+        order_any(food)
+    print("All food ordered")
+
+print("About to order")
+
+# I can give a list of foods directly
+order_all(["pizza", "burger", "fries"])
+
+# i can save the list of foods in a variable and then pass it
+health_foods = ["salad", "grilled chicken", "water"]
+order_all(health_foods)
+
+print("Done")
