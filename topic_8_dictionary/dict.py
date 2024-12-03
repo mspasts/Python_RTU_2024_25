@@ -8,6 +8,8 @@
 # dictionaries let us store key-value pairs
 # Latviski: vārdnīcas ļauj mums glabāt atslēgu-vērtību pārus
 
+# in other programming languages dictionaries are called maps, associative arrays, or hash maps
+
 # the main idea is that we can "instantly" find a value by its key - computer science calls this O(1) time complexity
 # so no matter how large our dictionary is, we can find a value by its key in the same amount of time
 # even if I have million key - value pairs I can still find a value by its key in the same amount of time
@@ -68,3 +70,78 @@ del tel_dict["Bob"]
 # stats again
 print("Updated telephone dictionary:", tel_dict)
 print("Length of updated telephone dictionary:", len(tel_dict))
+
+# what happens if i try to del non-existing key
+# we get KeyError
+try:
+    del tel_dict["Bob"]
+except KeyError as e:
+    print("KeyError:", e)
+
+# we could first check if the key exists
+# so called membership test - this is VERY FAST as well - O(1) time complexity
+if "Bob" in tel_dict:
+    print("Goodbye Bob")
+    del tel_dict["Bob"]
+else:
+    print("Bob is already gone")
+
+# similarly what happens if I want to get Bob's phone number and he is not in the dictionary?
+# we get key error
+try:
+    print("Bob's phone number:", tel_dict["Bob"])
+except KeyError as e:
+    print("KeyError:", e) 
+
+# we could use in to check first
+# note in is faster than checking for something in a list
+
+if "Bob" in tel_dict:
+    print("Bob's phone number:", tel_dict["Bob"])
+else:
+    print("Sorry Bob is not in the dictionary")
+
+# if this is common operation we could use get method
+alice_phone = tel_dict.get("Alice")
+print("Alice's phone number:", alice_phone)
+bob_phone = tel_dict.get("Bob")
+print("Bob's phone number:", bob_phone) # returns None if key is not in the dictionary
+default_phone = tel_dict.get("Bob", 1188) # so if I supply 2nd argument it will return that if key is not in the dictionary
+print("default phone number:", default_phone)
+
+# let's add a default value for Bob
+tel_dict.setdefault("Bob", 112) # this works only if key is not in the dictionary
+print("Updated telephone dictionary:", tel_dict)
+# bob is back but note he is now in the end of the dictionary
+# now if I try setdefault again it will not change the value
+tel_dict.setdefault("Bob", 113) # this works only if key is not in the dictionary
+print("Updated telephone dictionary:", tel_dict)
+# so setdefault is useful if you want to add a default value only if key is not in the dictionary
+# it is equivalent to following code
+if "Bob" not in tel_dict: # very fast
+    tel_dict["Bob"] = 114
+
+# so let's see dictionary again
+print("Updated telephone dictionary:", tel_dict)
+
+# we do not need to use literal strings for keys we can use variables
+name = "Charlie" # also could call this needle, or key, or anything else
+print(name + "'s phone number:", tel_dict[name])
+
+# let's loop through our dictionary
+
+# first let's loop through the keys
+
+print("Keys in telephone dictionary:")
+for key in tel_dict:
+    print(f"KEY -> {key}, VALUE -> {tel_dict[key]} == {tel_dict.get(key)}")
+    # the get here is not needed
+    # why?
+    # because looping through the dictionary gives us the keys guaranteed
+    # so a tiny bit slower to use get here because it includes if to check if key is in the dictionary
+
+# we also have a way to go through keys and values
+# this is useful if we need both key and value
+print("Keys and values in telephone dictionary:")
+for key, value in tel_dict.items(): # of course could use any variable names here, k,v for example
+    print(f"KEY -> {key}, VALUE -> {value} == {tel_dict[key]}")
