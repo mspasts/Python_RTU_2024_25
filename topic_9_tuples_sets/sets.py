@@ -69,3 +69,114 @@ if "milk" in unique_shopping_set: # very quick operation
     unique_shopping_set.remove("milk")
 else:
     print("Milk is not in the set")
+
+# Finally we have set operations from set theory (kopu algebras)
+
+# let's make a set of numbers from 0 to 9
+numbers_0_9 = set(range(10))
+print("Numbers from 0 to 9", numbers_0_9)
+
+# i can also use {} to create a set
+num_3_7 = {3, 4, 5, 6, 7, 7, 7, 3,4, 5, 6, 7} #if I have individual elements then I use {}
+print("Numbers from 3 to 7", num_3_7)
+
+# alternatively I could use set on a list
+num_5_9 = set([5, 6, 7, 8, 9]) # if I have a sequence then I use set
+print("Numbers from 5 to 9", num_5_9)
+
+# let's start with checking some basic set operations
+# subset - is one set contained in another
+print("Is 3, 4, 5 a subset of 0 to 9?", {3, 4, 5}.issubset(numbers_0_9))
+# is our num_3_7 a subset of numbers_0_9
+print("Is 3 to 7 a subset of 0 to 9?", num_3_7.issubset(numbers_0_9))
+# how about num_3_7 and num_5_9 ?
+print("Is 3 to 7 a subset of 5 to 9?", num_3_7.issubset(num_5_9))
+
+# we have a shorthand for subset - <=
+# let's check 3 to 7 is a subset of 0 to 9
+print("Is 3 to 7 a subset of 0 to 9?", num_3_7 <= numbers_0_9)
+# we also have strict subset - <
+# let's check 3 to 7 is a strict subset of 0 to 9
+print("Is 3 to 7 a strict subset of 0 to 9?", num_3_7 < numbers_0_9)
+# but if we check our numbers_0_9 is a subset of itself
+print("Is 0 to 9 a subset of 0 to 9?", numbers_0_9 <= numbers_0_9)
+# but it is not a strict subset
+print("Is 0 to 9 a strict subset of 0 to 9?", numbers_0_9 < numbers_0_9)
+
+# superset - is one set containing another
+print("Is 0 to 9 a superset of 3 to 7?", numbers_0_9.issuperset(num_3_7))
+# we have a shorthand for superset - >=
+print("Is 0 to 9 a superset of 3 to 7?", numbers_0_9 >= num_3_7)
+# we also have strict superset - >
+print("Is 0 to 9 a strict superset of 3 to 7?", numbers_0_9 > num_3_7)
+# but if we check our numbers_0_9 is a superset of itself
+print("Is 0 to 9 a superset of 0 to 9?", numbers_0_9 >= numbers_0_9)
+# but it is not a strict superset
+print("Is 0 to 9 a strict superset of 0 to 9?", numbers_0_9 > numbers_0_9)
+
+# disjoint - no elements in common
+# let's check 3 to 7 and 5 to 9
+print("Are 3 to 7 and 5 to 9 disjoint?", num_3_7.isdisjoint(num_5_9))
+
+# union - all elements from both sets (no duplicates)
+# union - Latviski apvienojums
+# let's check 3 to 7 and 5 to 9 union
+print("Union of 3 to 7 and 5 to 9", num_3_7.union(num_5_9))
+# now let's check the shorthand it is | (pipe symbol)
+# let's also save this
+num_3_9 = num_3_7 | num_5_9 # so same as num_3_7.union(num_5_9)
+print("Union of 3 to 7 and 5 to 9", num_3_9)
+# union is a bit more forgiving thatn | in that it takes also other collections
+all_kinds_set = num_3_7.union([10, 11, 12, 13], {14, 15, 16, 17}, "Valdis", ("Banana", "Apelsinš"))
+print("Union of 3 to 7, 10 to 17", all_kinds_set)
+
+# intersection - elements in common
+# intersection - Latviski šķēlums
+# let's check 3 to 7 and 5 to 9 intersection
+print("Intersection of 3 to 7 and 5 to 9", num_3_7.intersection(num_5_9))
+# now let's check the shorthand it is & (ampersand symbol)
+# let's also save this
+num_5_7 = num_3_7 & num_5_9 # so same as num_3_7.intersection(num_5_9)
+print("Intersection of 3 to 7 and 5 to 9", num_5_7)
+# careful with starting a intersection with an empty set
+empty_set = set()
+# let's check intersection with an empty set
+print("Intersection of 3 to 7 and empty set", num_3_7.intersection(empty_set))
+# we always get an empty set, because there are no elements in common
+
+# difference - elements in one set but not in the other
+# difference - Latviski atšķirība
+# let's check 3 to 7 and 5 to 9 difference
+print("Difference of 3 to 7 and 5 to 9", num_3_7.difference(num_5_9))
+# now let's check the shorthand it is - (minus symbol)
+# let's also save this
+num_3_5 = num_3_7 - num_5_9 # so same as num_3_7.difference(num_5_9)
+print("Difference of 3 to 7 and 5 to 9", num_3_5)
+# note this is not symmetric
+num_8_9 = num_5_9 - num_3_7
+print("Difference of 5 to 9 and 3 to 7", num_8_9)
+
+# finally we have symmetric difference - elements in one set or the other but not in both
+# symmetric difference - Latviski simetriskā atšķirība
+# let's check 3 to 7 and 5 to 9 symmetric difference
+print("Symmetric difference of 3 to 7 and 5 to 9", num_3_7.symmetric_difference(num_5_9))
+# now let's check the shorthand it is ^ (caret symbol)
+# let's also save this
+num_3_5_8_9 = num_3_7 ^ num_5_9 # so same as num_3_7.symmetric_difference(num_5_9)
+print("Symmetric difference of 3 to 7 and 5 to 9", num_3_5_8_9)
+
+# now union of differences should give you symmetric difference
+# let's check
+also_num_3_5_8_9 = num_3_5.union(num_8_9)
+print("Symmetric difference of 3 to 7 and 5 to 9", also_num_3_5_8_9)
+
+# i can compare sets for equality
+# let's check if the sets have same elements
+print("Are 3 to 7 and 5 to 9 equal?", num_3_7 == num_5_9)
+# now lets compare those num_3_5_8_9 and also_num_3_5_8_9
+print("Are 3 to 5, 8 to 9 and 3 to 5, 8 to 9 equal?", num_3_5_8_9 == also_num_3_5_8_9)
+
+# again 3 major uses for sets
+# 1. remove duplicates from a list
+# 2. check for membership quickly in O(1) time
+# 3. set operations from set theory - union, intersection, difference, symmetric difference, subset, superset, disjoint
