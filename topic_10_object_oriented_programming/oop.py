@@ -78,6 +78,13 @@
 # instead we use so called __init__ method to initialize properties
 
 class Book:
+    # we have so called class variables
+    # also they are sort of constants
+    # also they are sort of hidden
+    # we can access them only from within the class
+    __MIN_PRICE = 0.0
+    __MAX_PRICE = 1000.0
+    
     # __init__ is special method that is called when object is created
     # it is used to initialize properties
     # self is reference to the object itself
@@ -112,20 +119,34 @@ class Book:
     # we can define methods that change properties
     # let's have a method that adjusts price
 
+    # I could have a private clamp function
+    # this method can be used only within the class not from outside
+    def __clamp_price(self, price):
+        if price < Book.__MIN_PRICE:
+            price = Book.__MIN_PRICE
+        elif price > Book.__MAX_PRICE:
+            price = Book.__MAX_PRICE
+        return price # note it returns the  new price
+
     def adjust_price(self, new_price):
+        # check price # here we CLAMP the price to be within MIN_PRICE and MAX_PRICE
+        # we could use other logic here
+        self.price = self.__clamp_price(new_price)
+
         # idea is that here we could have some logic that checks if new price is valid
         # maybe we don't want price to be negative
         # maybe there is a discount on the book
         # maybe there is a tax on the book
         # maybe there is upper limit on the price
-        self.price = new_price
+
 
     # we could add increase price method
     def increase_price(self, amount):
         # we could also check whether amount is valid maybe it is not a number
         # again we could check whether we are truly increasing the price
         # maybe we don't want to increase the price by negative amount
-        self.price += amount
+        # let's use clamp here as well
+        self.price = self.__clamp_price(self.price + amount)
 
 
 # we create a new Book object by calling the class and provide values for properties
@@ -154,4 +175,10 @@ third_book.increase_price(5) # increase by 1
 print(third_book)
 # now let's increase price by negative amount
 third_book.increase_price(-10) # decrease by 10
+print(third_book)
+# now let's increase price by negative amount
+third_book.increase_price(-10) # decrease by 10 again
+print(third_book)
+# now let's try putting 9000 price
+third_book.increase_price(9000) # increase by 9000
 print(third_book)
