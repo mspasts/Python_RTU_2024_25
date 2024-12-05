@@ -114,6 +114,11 @@ class Book:
     # we can define methods that operate on the object
     def display(self): # display is just a random name for the method could be anything
         print(f"{self.title} by {self.author} ({self.year}) - {self.price}")
+        # if function does not return anything
+        # then it returns None
+        # so you might want to return something else
+        # here we could return self
+        return self
 
     # typically in OOP we have getters and setters things that change properties of the object
     # we can define methods that change properties
@@ -138,6 +143,8 @@ class Book:
         # maybe there is a discount on the book
         # maybe there is a tax on the book
         # maybe there is upper limit on the price
+        # again I add return self so I can chain methods
+        return self
 
 
     # we could add increase price method
@@ -147,6 +154,8 @@ class Book:
         # maybe we don't want to increase the price by negative amount
         # let's use clamp here as well
         self.price = self.__clamp_price(self.price + amount)
+        # again I add return self so I can chain methods
+        return self
 
 
 # we create a new Book object by calling the class and provide values for properties
@@ -182,3 +191,18 @@ print(third_book)
 # now let's try putting 9000 price
 third_book.increase_price(9000) # increase by 9000
 print(third_book)
+
+# let's try to access __MIN_PRICE
+try:
+    print(third_book.__MIN_PRICE)
+except AttributeError as e:
+    print(e)
+# turns out Python is simply renaming the variable to _Book__MIN_PRICE
+# if you REALLY REALLY want to get to it you still can - usually you do not want to do this
+print("I found the actual min", third_book._Book__MIN_PRICE)
+
+# now that I have added return self I can chain methods
+
+third_book.adjust_price(8.99).display().increase_price(5).display().increase_price(-10).display()
+
+
