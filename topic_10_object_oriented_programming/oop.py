@@ -205,4 +205,133 @@ print("I found the actual min", third_book._Book__MIN_PRICE)
 
 third_book.adjust_price(8.99).display().increase_price(5).display().increase_price(-10).display()
 
+# now we come to topic of inheritance
+# the idea is that we have some more general class and we want to create more specific class
+# we can reuse the general class and add some more specific properties and methods
+
+# let's say we have a class FictionBook
+
+# we can inherit from Book class by providing the class name in parentheses
+
+class FictionBook(Book):
+    # here at the moment we do not add anything new but we can use FictionBook just like Book
+    # note that Book __init__ method is called automatically if we do not make our own __init__ method
+    # let's add some custom method
+    # we could override existing methods - that is allowed
+    def display(self):
+        print(f"Fiction: {self.title} by {self.author} ({self.year}) - {self.price}")
+        return self
+    
+    # we could add some new methods specific to FictionBook
+    # the parent class Book does not have this method
+    def is_best_seller(self):
+        return self.price > 20 # logic being that expensive books are best sellers.... okkkay
+
+
+# let's create a FictionBook object
+fiction_book = FictionBook("Old man and the sea", "Ernest Hemingway", 1952, 10.99)
+fiction_book.display() #everything works from original PARENT class
+
+# let's try is_best_seller method
+print(f"Is {fiction_book.title} best seller? {fiction_book.is_best_seller()}")
+
+# if I really want I can create a inherited book but with some extra properties
+# then a custom __init__ method is needed
+
+class RomanceBook(Book):
+    def __init__(self, title, author, year, price, love_interest):
+        # I can call parent class __init__ method
+        super().__init__(title, author, year, price)
+        # i usually want to call super().__init__ first because it initializes properties of the parent class
+        # of course I could skip this call and do it over myself
+        # self.title = title
+        # self.author = author
+        # self.year = year
+        # self.price = price
+        # but that kind of defeats the purpose of inheritance
+        # I can add new properties
+        self.love_interest = love_interest
+
+    # override display method - this is optional
+    def display(self):
+        print(f"Romance: {self.title} by {self.author} ({self.year}) - {self.price} - {self.love_interest}")
+        return self
+    
+    # change love interest - a new method for RomanceBook
+    def change_love_interest(self, new_love_interest):
+        self.love_interest = new_love_interest
+        return self
+
+
+# often times instead of inheritance we use composition
+# instead of creating a class that is a subclass of another class
+# we create a class that has an object of another class
+# we could even store multiple objects of another class inside our class
+
+# let's say we have a class Library
+
+class Library:
+    def __init__(self, name, city="Rīga", books=None): # import moment DO NOT USE MUTABLE DEFAULT ARGUMENTS SUCH AS LIST
+        # we could have a list of books
+        # we can pass in lists of books or None
+        if books is None:
+            books = []
+        self.books = books
+        # i need to bind all passed in values to properties
+        self.name = name
+        self.city = city
+    
+    # we could add a book to the library
+    def add_book(self, book):
+        self.books.append(book)
+        return self
+
+    # we could list all books in the library
+    def list_books(self):
+        for book in self.books:
+            book.display()
+        return self
+
+    # we could find a book by title
+    def find_book(self, title):
+        for book in self.books:
+            if book.title == title:
+                return book
+        return None
+
+    # we could remove a book by title
+    def remove_book(self, title):
+        for i, book in enumerate(self.books):
+            if book.title == title:
+                self.books.pop(i)
+                return self
+        return self
+    
+# let's make central library
+central_library = Library("Central Library")
+# let's add some books
+central_library.add_book(new_book).add_book(another_book).add_book(third_book).add_book(fiction_book)
+# let's print name of the library
+print(central_library.name)
+# let's list books
+central_library.list_books()
+# let's find a book 1984
+book_1984 = central_library.find_book("1984") # we do not have guarantee that book is found
+# so here next line could fail
+# we could check if it really is from Book class
+if isinstance(book_1984, Book):
+    book_1984.display()
+else:
+    print("Book not found")
+
+# to conclude almost everything in Python is an object
+
+# let's see our primite types again
+print(type(5)) # <class 'int'>
+print(type(5.0)) # <class 'float'>
+print(type("hello")) # <class 'str'>
+print(type(True)) # <class 'bool'>
+
+# so when I do something like 
+print("hello".upper()) # upper is an object method
 
