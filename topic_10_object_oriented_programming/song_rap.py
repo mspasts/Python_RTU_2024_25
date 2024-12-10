@@ -69,14 +69,19 @@ class Rap(Song):
         self._print_title_author() # if we had used __print_title_author() it would not be accessible here
         # we then would need to unmangle the name _Song__print_title_author()
         
-        if max_lines == -1:  # Ja nav ierobežots rindiņu skaits, izdrukā visas
-            for line in self.lyrics:
-                # Pievienojam 'drop' vārdu aiz katra vārda
-                print(' '.join([f"{word} {drop}" for word in line.split()]))
-        else:
-            for i in range(min(max_lines, len(self.lyrics))):
-                # Pievienojam 'drop' vārdu aiz katra vārda
-                print(' '.join([f"{word} {drop}" for word in self.lyrics[i].split()]))
+        # if max_lines == -1:  # Ja nav ierobežots rindiņu skaits, izdrukā visas
+        #     for line in self.lyrics:
+        #         # Pievienojam 'drop' vārdu aiz katra vārda
+        #         print(' '.join([f"{word} {drop}" for word in line.split()]))
+        # else:
+        #     for i in range(min(max_lines, len(self.lyrics))):
+        #         # Pievienojam 'drop' vārdu aiz katra vārda
+        #         print(' '.join([f"{word} {drop}" for word in self.lyrics[i].split()]))
+        # we could make this with less nesting and more Pythonic
+        if max_lines == -1:
+            max_lines = len(self.lyrics)
+        for line in self.lyrics[:max_lines]:
+            print(' '.join([f"{word} {drop}" for word in line.split()]))
         
         return self  # Ķēdēšanai
     
