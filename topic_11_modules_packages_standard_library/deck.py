@@ -4,12 +4,21 @@
 # we will want a draw method - that will draw a card from the deck
 
 import random
+import itertools
 
 class Deck:
-    def __init__(self, shuffle=False, seed=None):
-        self.suits = ["kāravs", "ercens", "kreics", "pīķis"]
-        self.ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"]
-        self.deck = [(rank, suit) for rank in self.ranks for suit in self.suits]
+    def __init__(self, 
+                 # let's use emoji suits
+                 suits = ("♠", "♣", "♥", "♦"),
+                 ranks = ("2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"),
+                 shuffle=False, 
+                 seed=None):
+        self.suits = suits
+        self.ranks = ranks
+        # self.deck = [(rank, suit) for rank in self.ranks for suit in self.suits]
+        # above is a fine approach but we could do the same with two loops which is longer
+        # also we could do it with itertools.product
+        self.deck = list(itertools.product(self.ranks, self.suits))
         if seed: # without seed we will get different results each time we run the script
             random.seed(seed)
         if shuffle:
