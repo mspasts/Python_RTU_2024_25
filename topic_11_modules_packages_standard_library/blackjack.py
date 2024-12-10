@@ -117,7 +117,7 @@ class BlackJack:
 
 if __name__ == "__main__":
     print("Let's play BlackJack!")
-    game = BlackJack(shuffle=True, seed=42)
+    game = BlackJack(shuffle=True, seed=42) # seed is good for debugging
     game.play()
 
 # FIXME looks like the dealer draw two cards at the end of the game even when losing
