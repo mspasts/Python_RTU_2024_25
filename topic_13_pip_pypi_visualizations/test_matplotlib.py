@@ -1,4 +1,12 @@
 # now that we have installed matplotlib, we can test it
+# let's show python version
+import sys
+print("Python version:", sys.version)
+# show Python path
+print("Python path:", sys.path)
+# show executable path
+print("Python executable path:", sys.executable)
+
 
 # first let's try importing it
 try:
@@ -8,6 +16,8 @@ try:
 except ImportError:
     print("matplotlib is not installed")
     print("Please install matplotlib by running: pip install matplotlib")
+    # again pip install matplotlib needs to be run only once per installation
+    raise # to stop the program
 # of course usually we know that we have installed it, but it is good to check
 
 # let's create a simple sine wave plot
@@ -25,4 +35,15 @@ plt.plot(x, y)
 plt.title("Sine wave")
 plt.xlabel("x")
 plt.ylabel("sin(x)")
-plt.show() # to see the plot
+
+
+# let's plot x**2 on the same plot
+y2 = [i**2 for i in x]  # square of each value in x
+# plt.plot(x, y2) # we can plot multiple lines on the same plot
+# let's add color and line style
+plt.plot(x, y2, color='red', linestyle='dashed')
+# you can save figure as an image
+# let's save as a png file
+plt.savefig("sine_wave_and_square.png")
+
+plt.show() # to see the plot interactively
