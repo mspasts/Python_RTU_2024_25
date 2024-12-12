@@ -1,0 +1,5 @@
+car
+bike
+airplane
+apple
+error: bad vehicle

@@ -1,0 +1,4 @@
+hello world
+python programming is fun
+error: invalid input
+this is a test line
