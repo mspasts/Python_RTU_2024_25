@@ -1,0 +1,23 @@
+[
+    {
+        "name": "pizza",
+        "type": "Italian",
+        "price": 10.99
+    },
+    {
+        "name": "sushi",
+        "type": "Japanese",
+        "price": 24.99
+    },
+    {
+        "name": "cheeseburger",
+        "type": "American",
+        "price": 8.99
+    },
+    {
+        "name": "kartupeļi",
+        "type": "Latvian",
+        "price": 1.29,
+        "komentārs": "kartupeļi ir garšīgi"
+    }
+]
