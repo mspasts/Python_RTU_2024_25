@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+    <title>Hello from Flask</title>
+</head>    
+<body>
+    <h1>Hello World!</h1>
+    {% if person %}
+  <h2>Hello there {{ person }}!</h2>
+    {% else %}
+  <h2>Hello default World!</h2>
+    {% endif %}
+    <footer>
+        <!-- <img src="{{ url_for('static', filename='images/smile.png') }}" alt="smile"> -->
+        <!-- <img src="https://www.das.lv/platforma/pluginfile.php/1/theme_mb2nl/logodark/1721492264/rtu_white_300px.png" alt="RTU"> -->
+        <img src="https://pypi.org/static/images/logo-small.8998e9d1.svg" alt="PyPi">
+    </footer>
+</body>
+</html>
