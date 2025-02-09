@@ -1,0 +1,26 @@
+python -m venv venv
+.\venv\Scripts\activate.ps1
+deactivate
+
+python -m pip install --upgrade pip
+python -m pip install <package name>  # install package
+python -m pip install -U <package name>  # update package
+
+Youtube Video Saraksts - 2024 Novembra 19 kursamURL
+https://www.youtube.com/playlist?list=PLdny-WHphTZ5MWMntZ48KFss6iLO8YzJv
+
+Git Commands:
+    git clone
+    git status
+    git pull
+    git add *
+    git commit
+    git push
+
+## Python sintakses apraksts
+
+() - lietojam lai izsauktu funkcijas, metodes
+() lieto arī tuple datu struktūrā
+{} lieto arī f-strings lai atdalīto izpildāmo kodu/mainīgos no teksta
+{} lieto vārdnīcām un sets(kopām)
+[] lieto sarakstiem(lists), un citām virknēm(piemēram string)

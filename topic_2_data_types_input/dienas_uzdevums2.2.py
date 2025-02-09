@@ -1,3 +1,9 @@
+"""
+2. Uzdevums
+Uzdod 3 jautājums par telpas platumu, garumu, augstumu
+Uzrāda cik liels būs telpas tilpums
+"""
+
 width = input("What is width of room? ")
 lenght = input("What is lenght of room? ")
 height = input("What is height of room? ")
