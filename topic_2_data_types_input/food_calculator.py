@@ -20,7 +20,7 @@ food = input(f"What is your favorite food, {name}?")
 print(f"Awesome, I love {food} myself")
 
 # now let's get the price
-print(f"So {name}, how would is 1kg of {food} in your corner store?")
+print(f"So {name}, what price is for 1kg of {food} in your corner store?")
 price = input("->") # this will be in new line
 print(f"Oh, {price} for 1kg of {food}, that's quite a bit, isn't it?")
 price_2kg = price * 2
