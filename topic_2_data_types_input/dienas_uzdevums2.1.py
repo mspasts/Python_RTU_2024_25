@@ -14,5 +14,5 @@ age_to_100 = 100 - age
 rounded_age = round(age_to_100)
 print (f"You will be 100 years old in {rounded_age} years")
 birthyear = input("What year were you born, {name}?")
-hundred_years_old = float(birthyear) + 100
+hundred_years_old = int(birthyear) + 100
 print (f"You will be 100 years old in year {hundred_years_old}")

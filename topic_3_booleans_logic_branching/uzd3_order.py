@@ -1,3 +1,9 @@
+"""
+3. Noprasiet lietotājam ievadīt 3 skaitļus, izvadiet tos sakārtotā secībā.
+Piezīme: pagaidām šo uzdevumu risinam tikai ar if, elif, else darbībām
+Pastāv arī risinājums izmantojot kārtošanu un list struktūru, kuru vēl neesam skatījuši.
+"""
+
 # 3. Uzdevums - Kārtībai jābūt
 X = int(input("1. skaitlis: "))
 Y = int(input("2. skaitlis: "))
@@ -14,4 +20,4 @@ elif Z <= X and X <= Y:
     print(Z, X, Y)
 elif Z <= Y and Y <= X:
     print(Z, Y, X)
-    # pārējos ir jāspēlējas ar cipariņiem, lai izdomātu, kā sakārtot, piemēram, 3, 7 un 9; 9, 3 un 7; 7, 9 un 3 utt.
+# pārējos ir jāspēlējas ar cipariņiem, lai izdomātu, kā sakārtot, piemēram, 3, 7 un 9; 9, 3 un 7; 7, 9 un 3 utt.

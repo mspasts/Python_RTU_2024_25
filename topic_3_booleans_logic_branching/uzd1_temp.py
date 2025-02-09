@@ -1,3 +1,10 @@
+"""
+1. Uzrakstiet programmu, kas pārbauda lietotāja temperatūru.
+Ja lietotājs ievada zem 35, tad prasiet vai "nav par aukstu"
+Ja no 35 līdz 37 (ieskaitot), izvadiet "viss kārtībā"
+Ja ir pāri 37, tad izvadiet "iespējams drudzis"
+"""
+
 temperature = float(input("lūdzu ievadiet savu temperatūru "))
 # if temperature < 35:
 #     print("nav par aukstu ?")
